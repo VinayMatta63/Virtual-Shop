@@ -1,5 +1,4 @@
 import { Physics } from "@react-three/cannon";
-import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
 import { PerspectiveCamera } from "three";
@@ -13,19 +12,22 @@ function App() {
     new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500)
   );
   const positionRef = useRef([0, 0, 0]);
-
+  const entranceRef = useRef(null);
   cameraRef.current.position.y = 7;
 
   return (
     <Canvas style={{ height: "100vh" }} camera={cameraRef.current}>
-      {/* <OrbitControls /> */}
-      <ambientLight />
-      {/* <pointLight castShadow position={[2, 2, 2]} args={["white", 5]} /> */}
+      <ambientLight args={["white", 1]} />
+      <directionalLight args={["cyan", 0.6]} position={[0, 0, 28]} />
       <Physics gravity={[0, -9.82, 0]}>
         <Suspense fallback={null}>
-          <Body ref={positionRef} cameraRef={cameraRef} />
+          <Body
+            ref={positionRef}
+            cameraRef={cameraRef}
+            entranceRef={entranceRef}
+          />
           <Floor />
-          <Entrance />
+          <Entrance ref={entranceRef} />
         </Suspense>
       </Physics>
     </Canvas>

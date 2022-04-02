@@ -6,20 +6,19 @@ source: https://sketchfab.com/3d-models/sci-fi-spaceship-corridor-cea95926a8e845
 title: Sci-Fi Spaceship Corridor
 */
 
-import React, { useRef } from "react";
+import React, { forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export default function Entrance({ ...props }) {
-  const group = useRef();
+const Entrance = forwardRef(({ ...props }, entranceRef) => {
   const { nodes, materials } = useGLTF("/spaceship/scene.gltf");
   return (
     <group
-      ref={group}
+      ref={entranceRef}
       {...props}
       dispose={null}
       scale={0.1}
       rotation={[Math.PI, 0, -Math.PI]}
-      position={[0, -6.5, -40]}
+      position={[0, -7, -45]}
     >
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group
@@ -93,6 +92,8 @@ export default function Entrance({ ...props }) {
       </group>
     </group>
   );
-}
+});
 
 useGLTF.preload("/spaceship/scene.gltf");
+
+export default Entrance;

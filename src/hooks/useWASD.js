@@ -23,7 +23,6 @@ const useWASD = () => {
     const moveFieldByKey = (key) => keys[key];
 
     const onKeyDown = (event) => {
-      console.log(event.key);
       setMovement((m) => ({ ...m, [moveFieldByKey(event.key)]: true }));
     };
     const onKeyUp = (event) => {

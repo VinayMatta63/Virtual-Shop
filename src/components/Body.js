@@ -5,6 +5,7 @@ import { Raycaster, Vector3 } from "three";
 import useWASD from "../hooks/useWASD";
 import Character from "./Character";
 import IntroText from "./IntroText";
+import gsap from "gsap";
 
 const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
   const { forward, reverse, left, right, sprint } = useWASD();
@@ -66,20 +67,26 @@ const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
      * Control Camera rotation based on movement direction
      */
     if (reverse) {
+      gsap.to(cameraRef.current.rotation, { y: Math.PI, duration: 0.45 });
       cameraRef.current.position.z = positionRef.current[2] - 13;
-      cameraRef.current.rotation.y = Math.PI;
     } else if (forward) {
       cameraRef.current.position.z = positionRef.current[2] + 13;
     } else if (right) {
       cameraRef.current.position.x = positionRef.current[0] - 13;
       cameraRef.current.position.z = positionRef.current[2];
-      cameraRef.current.rotation.y = (3 * Math.PI) / 2;
+      gsap.to(cameraRef.current.rotation, {
+        y: (3 * Math.PI) / 2,
+        duration: 0.45,
+      });
     } else if (left) {
       cameraRef.current.position.x = positionRef.current[0] + 13;
       cameraRef.current.position.z = positionRef.current[2];
-      cameraRef.current.rotation.y = -(3 * Math.PI) / 2;
+      gsap.to(cameraRef.current.rotation, {
+        y: (-3 * Math.PI) / 2,
+        duration: 0.45,
+      });
     } else {
-      cameraRef.current.rotation.y = 0;
+      gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.45 });
     }
 
     characterRef.current.position.x = positionRef.current[0];

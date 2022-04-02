@@ -119,7 +119,7 @@ const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
         walk={forward || reverse || left || right}
         cameraRef={cameraRef}
       />
-      <IntroText reverse={reverse} />
+      <IntroText />
     </group>
   );
 });

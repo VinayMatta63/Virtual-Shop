@@ -1,15 +1,16 @@
 import { Physics } from "@react-three/cannon";
-import { OrbitControls } from "@react-three/drei";
+import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import { PerspectiveCamera } from "three";
 import "./App.css";
 import Body from "./components/Body";
 import Floor from "./components/Floor";
+import Entrance from "./components/Entrance";
 
 function App() {
   const cameraRef = useRef(
-    new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
+    new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500)
   );
   const positionRef = useRef([0, 0, 0]);
 
@@ -17,12 +18,15 @@ function App() {
 
   return (
     <Canvas style={{ height: "100vh" }} camera={cameraRef.current}>
-      {/* <OrbitControls camera={cameraRef.cuwrrent} /> */}
-      <ambientLight intensity={0.8} />
-      {/* <pointLight castShadow position={[10, 10, 10]} args={["white", 0.5]} /> */}
+      {/* <OrbitControls /> */}
+      <ambientLight />
+      {/* <pointLight castShadow position={[2, 2, 2]} args={["white", 5]} /> */}
       <Physics gravity={[0, -9.82, 0]}>
-        <Body ref={positionRef} cameraRef={cameraRef} />
-        <Floor />
+        <Suspense fallback={null}>
+          <Body ref={positionRef} cameraRef={cameraRef} />
+          <Floor />
+          <Entrance />
+        </Suspense>
       </Physics>
     </Canvas>
   );

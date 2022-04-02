@@ -7,6 +7,7 @@ const useWASD = () => {
     s: "reverse",
     d: "right",
     " ": "jump",
+    Shift: "sprint",
   };
 
   const [movement, setMovement] = useState({
@@ -15,12 +16,14 @@ const useWASD = () => {
     left: false,
     right: false,
     jump: false,
+    sprint: false,
   });
 
   useEffect(() => {
     const moveFieldByKey = (key) => keys[key];
 
     const onKeyDown = (event) => {
+      console.log(event.key);
       setMovement((m) => ({ ...m, [moveFieldByKey(event.key)]: true }));
     };
     const onKeyUp = (event) => {

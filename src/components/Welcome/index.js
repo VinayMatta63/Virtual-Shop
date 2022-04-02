@@ -2,26 +2,33 @@ import React, { forwardRef, useEffect, useRef } from "react";
 import { useSphere } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
 import { Raycaster, Vector3 } from "three";
-import useWASD from "../hooks/useWASD";
+import useWASD from "../../hooks/useWASD";
 import Character from "./Character";
 import IntroText from "./IntroText";
 import gsap from "gsap";
+import Entrance from "./Entrance";
 
-const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
+const Body = forwardRef(({ cameraRef }, positionRef) => {
   const { forward, reverse, left, right, sprint } = useWASD();
   const characterRef = useRef(null);
+  const entranceRef = useRef(null);
+
   const raycaster = new Raycaster(new Vector3(), new Vector3(), 0, 20);
   let SPEED = 10;
   const objects = [];
   const frontVector = new Vector3(0, 0, 0);
   const sideVector = new Vector3(0, 0, 0);
   const direction = new Vector3(0, 0, 0);
+
   const [ref, api] = useSphere(() => ({
     mass: 1,
     position: [0, 0, 0],
     type: "Dynamic",
   }));
 
+  /**
+   * Get Position of the sphere in physics world at any point.
+   */
   useEffect(() => {
     const unsubscribe = api.position.subscribe(
       (p) => (positionRef.current = p)
@@ -89,6 +96,9 @@ const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
       gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.45 });
     }
 
+    /**
+     * Get the character to follow the sphere in physics world.
+     */
     characterRef.current.position.x = positionRef.current[0];
     characterRef.current.position.z = positionRef.current[2];
 
@@ -114,12 +124,16 @@ const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
 
   return (
     <group>
+      <ambientLight args={["white", 1]} />
+      <directionalLight args={["cyan", 0.6]} position={[0, 0, 28]} />
+      <pointLight args={["white", 0.3, 50, 0.5]} position={[0, 10, -50]} />
       <Character
         ref={characterRef}
         walk={forward || reverse || left || right}
         cameraRef={cameraRef}
       />
       <IntroText />
+      <Entrance ref={entranceRef} />
     </group>
   );
 });

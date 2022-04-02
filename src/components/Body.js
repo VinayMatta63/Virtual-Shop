@@ -35,9 +35,9 @@ const Body = forwardRef(({ cameraRef }, positionRef) => {
 
     api.velocity.set(-direction.x, 0, -direction.z);
     cameraRef.current.position.x = positionRef.current[0];
-    cameraRef.current.position.z = positionRef.current[2] + 15;
+    cameraRef.current.position.z = positionRef.current[2] + 13;
     characterRef.current.position.x = positionRef.current[0];
-    characterRef.current.position.z = positionRef.current[2] + 5;
+    characterRef.current.position.z = positionRef.current[2];
 
     /*
      * Setting Character rotation while walking.
@@ -61,10 +61,6 @@ const Body = forwardRef(({ cameraRef }, positionRef) => {
 
   return (
     <group>
-      <mesh ref={ref} castShadow position={[0, 0, 0]}>
-        <sphereBufferGeometry attach="geometry" args={[1, 50, 50]} />
-        <meshBasicMaterial attach="material" color="hotpink" />
-      </mesh>
       <Character
         ref={characterRef}
         walk={forward || reverse || left || right}

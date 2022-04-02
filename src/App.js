@@ -18,7 +18,7 @@ function App() {
   return (
     <Canvas style={{ height: "100vh" }} camera={cameraRef.current}>
       {/* <OrbitControls camera={cameraRef.cuwrrent} /> */}
-      <ambientLight />
+      <ambientLight intensity={0.8} />
       {/* <pointLight castShadow position={[10, 10, 10]} args={["white", 0.5]} /> */}
       <Physics gravity={[0, -9.82, 0]}>
         <Body ref={positionRef} cameraRef={cameraRef} />

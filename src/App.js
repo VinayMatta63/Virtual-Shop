@@ -28,7 +28,9 @@ function App() {
       )}
 
       <Canvas
+        frameloop="demand"
         dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
         style={{ height: "100vh" }}
         camera={cameraRef.current}
       >

@@ -1,5 +1,6 @@
 import { Html } from "@react-three/drei";
-import React from "react";
+import React, { useMemo } from "react";
+import { MeshBasicMaterial } from "three";
 
 const IntroText = () => {
   const spriteStyles = {
@@ -12,6 +13,7 @@ const IntroText = () => {
     justifyContent: "center",
     flexDirection: "column",
   };
+  const mat = useMemo(() => new MeshBasicMaterial({ color: "blue" }), []);
   return (
     <group>
       <Html sprite style={spriteStyles} position={[0, 7, 0]} transform>
@@ -27,13 +29,11 @@ const IntroText = () => {
         }
       </Html>
       <group rotation={[-Math.PI / 2, 0, 0]} position={[0, 15, 0]}>
-        <mesh>
+        <mesh material={mat}>
           <cylinderBufferGeometry args={[0.2, 0.2, 5]} />
-          <meshBasicMaterial color="blue" />
         </mesh>
-        <mesh position={[0, 3.5, 0]}>
+        <mesh position={[0, 3.5, 0]} material={mat}>
           <coneBufferGeometry args={[0.6, 3]} />
-          <meshBasicMaterial color="blue" />
         </mesh>
       </group>
     </group>

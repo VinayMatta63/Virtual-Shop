@@ -121,7 +121,6 @@ const Body = forwardRef(({ cameraRef }, positionRef) => {
       characterRef.current.rotation.y += (Math.PI / 4) * 3;
     }
   });
-
   return (
     <group>
       <ambientLight args={["white", 1]} />

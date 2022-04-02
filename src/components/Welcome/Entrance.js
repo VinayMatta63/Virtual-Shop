@@ -7,10 +7,11 @@ title: Sci-Fi Spaceship Corridor
 */
 
 import React, { forwardRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Entrance = forwardRef(({ ...props }, entranceRef) => {
-  const { nodes, materials } = useGLTF("/spaceship/scene.gltf");
+  const { nodes, materials } = useLoader(GLTFLoader, "/spaceship/scene.gltf");
   return (
     <group
       ref={entranceRef}
@@ -93,7 +94,5 @@ const Entrance = forwardRef(({ ...props }, entranceRef) => {
     </group>
   );
 });
-
-useGLTF.preload("/spaceship/scene.gltf");
 
 export default Entrance;

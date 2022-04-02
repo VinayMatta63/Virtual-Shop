@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import nipplejs from "nipplejs";
 
 const useWASD = () => {
   const keys = {
@@ -18,7 +19,6 @@ const useWASD = () => {
     jump: false,
     sprint: false,
   });
-
   useEffect(() => {
     const moveFieldByKey = (key) => keys[key];
 
@@ -37,6 +37,38 @@ const useWASD = () => {
       document.removeEventListener("keyup", onKeyUp);
     };
   }, []);
+  const element = document.getElementById("joystick-zone");
+
+  if (element !== null) {
+    const manager = nipplejs.create({
+      mode: "static",
+      color: "cyan",
+      shape: "circle",
+      zone: document.getElementById("joystick-zone"),
+      position: { left: "10%", bottom: "10%" },
+    });
+
+    manager.on("move", (event, data) => {
+      setMovement((m) => ({
+        ...m,
+        forward: data.vector.y > 0.5,
+        reverse: data.vector.y < -0.5,
+        left: data.vector.x < -0.5,
+        right: data.vector.x > 0.5,
+      }));
+    });
+
+    manager.on("end", (event, data) => {
+      setMovement({
+        forward: false,
+        reverse: false,
+        left: false,
+        right: false,
+        jump: false,
+        sprint: false,
+      });
+    });
+  }
 
   return movement;
 };

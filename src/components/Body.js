@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { Raycaster, Vector3 } from "three";
 import useWASD from "../hooks/useWASD";
 import Character from "./Character";
+import IntroText from "./IntroText";
 
 const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
   const { forward, reverse, left, right, sprint } = useWASD();
@@ -111,6 +112,7 @@ const Body = forwardRef(({ cameraRef, entranceRef }, positionRef) => {
         walk={forward || reverse || left || right}
         cameraRef={cameraRef}
       />
+      <IntroText reverse={reverse} />
     </group>
   );
 });

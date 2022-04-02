@@ -19,6 +19,7 @@ function App() {
     <Canvas style={{ height: "100vh" }} camera={cameraRef.current}>
       <ambientLight args={["white", 1]} />
       <directionalLight args={["cyan", 0.6]} position={[0, 0, 28]} />
+      <pointLight args={["white", 0.3, 50, 0.5]} position={[0, 10, -50]} />
       <Physics gravity={[0, -9.82, 0]}>
         <Suspense fallback={null}>
           <Body

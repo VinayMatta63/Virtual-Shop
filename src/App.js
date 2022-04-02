@@ -5,12 +5,13 @@ import { Suspense, useRef } from "react";
 import { PerspectiveCamera } from "three";
 import "./App.css";
 import Welcome from "./components/welcome";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const cameraRef = useRef(
     new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500)
   );
-  const positionRef = useRef([0, 0, 0]);
+
   cameraRef.current.position.y = 7;
 
   return (
@@ -36,7 +37,7 @@ function App() {
       >
         <Physics gravity={[0, -9.82, 0]}>
           <Suspense fallback={null}>
-            <Welcome ref={positionRef} cameraRef={cameraRef} />
+            <Welcome cameraRef={cameraRef} />
           </Suspense>
         </Physics>
       </Canvas>

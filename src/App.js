@@ -45,6 +45,7 @@ function App() {
       >
         <Physics gravity={[0, -9.82, 0]}>
           <Suspense fallback={null}>
+            <ambientLight args={["white", 1]} />
             <Movement />
           </Suspense>
           <BrowserRouter>

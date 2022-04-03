@@ -76,7 +76,7 @@ const Movement = () => {
      * Control Camera rotation based on movement direction
      */
     if (reverse) {
-      gsap.to(cameraRef.current.rotation, { y: Math.PI, duration: 0.45 });
+      gsap.to(cameraRef.current.rotation, { y: Math.PI, duration: 0.2 });
       cameraRef.current.position.z = positionRef.current[2] - 13;
     } else if (forward) {
       cameraRef.current.position.z = positionRef.current[2] + 13;
@@ -85,17 +85,17 @@ const Movement = () => {
       cameraRef.current.position.z = positionRef.current[2];
       gsap.to(cameraRef.current.rotation, {
         y: (3 * Math.PI) / 2,
-        duration: 0.45,
+        duration: 0.2,
       });
     } else if (left) {
       cameraRef.current.position.x = positionRef.current[0] + 13;
       cameraRef.current.position.z = positionRef.current[2];
       gsap.to(cameraRef.current.rotation, {
         y: (-3 * Math.PI) / 2,
-        duration: 0.45,
+        duration: 0.2,
       });
     } else {
-      gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.45 });
+      gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.2 });
     }
 
     /**

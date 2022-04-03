@@ -1,18 +1,26 @@
 import { Physics } from "@react-three/cannon";
 import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { PerspectiveCamera } from "three";
 import "./App.css";
 import Welcome from "./components/welcome";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import useStore from "./store";
+import Movement from "./components/common/Movement";
+
+const dispatchSelector = (state) => state.dispatch;
 
 function App() {
   const cameraRef = useRef(
     new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500)
   );
-
   cameraRef.current.position.y = 7;
+  const dispatch = useStore(dispatchSelector);
+
+  useEffect(() => {
+    dispatch({ type: "SETCAM", payload: cameraRef });
+  }, []);
 
   return (
     <div>
@@ -37,8 +45,21 @@ function App() {
       >
         <Physics gravity={[0, -9.82, 0]}>
           <Suspense fallback={null}>
-            <Welcome cameraRef={cameraRef} />
+            <Movement />
           </Suspense>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={null}>
+                    <Welcome cameraRef={cameraRef} />
+                  </Suspense>
+                }
+              />
+              <Route path="shop" />
+            </Routes>
+          </BrowserRouter>
         </Physics>
       </Canvas>
       <Loader

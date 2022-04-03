@@ -1,10 +1,18 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Entrance from "./Entrance";
 import IntroText from "./IntroText";
-import Movement from "../common/Movement";
+import useStore from "../../store";
 
-const Welcome = ({ cameraRef }) => {
+const dispatchSelector = (state) => state.dispatch;
+
+const Welcome = () => {
   const entranceRef = useRef(null);
+  const dispatch = useStore(dispatchSelector);
+
+  useEffect(() => {
+    dispatch({ type: "SETOBJ", payload: entranceRef.current });
+  }, []);
+
   return (
     <group>
       <ambientLight args={["white", 1]} />
@@ -12,7 +20,6 @@ const Welcome = ({ cameraRef }) => {
       <pointLight args={["white", 0.3, 50, 0.5]} position={[0, 10, -50]} />
       <IntroText />
       <Entrance ref={entranceRef} />
-      <Movement cameraRef={cameraRef} objectRef={entranceRef} />
     </group>
   );
 };

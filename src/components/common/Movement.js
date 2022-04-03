@@ -5,15 +5,21 @@ import { Raycaster, Vector3 } from "three";
 import useWASD from "../../hooks/useWASD";
 import Character from "./Character";
 import gsap from "gsap";
+import useStore from "../../store";
 
-const Movement = ({ cameraRef, objectRef }) => {
+const camSelector = (state) => state.camera;
+const objSelector = (state) => state.objects;
+
+const Movement = () => {
   const { forward, reverse, left, right, sprint } = useWASD();
+  const cameraRef = useStore(camSelector);
+  const objects = useStore(objSelector);
+
   const characterRef = useRef(null);
   const positionRef = useRef([0, 0, 0]);
 
   const raycaster = new Raycaster(new Vector3(), new Vector3(), 0, 20);
   let SPEED = 10;
-  const objects = [];
   const frontVector = new Vector3(0, 0, 0);
   const sideVector = new Vector3(0, 0, 0);
   const direction = new Vector3(0, 0, 0);
@@ -35,10 +41,6 @@ const Movement = ({ cameraRef, objectRef }) => {
   }, []);
 
   useFrame(() => {
-    objectRef &&
-      !objects.includes(objectRef.current) &&
-      objects.push(objectRef.current);
-
     /**
      * Increase Speed while sprinting
      */

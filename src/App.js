@@ -39,31 +39,29 @@ function App() {
 
       <Canvas
         frameloop="demand"
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         performance={{ min: 0.5 }}
         style={{ height: "100vh" }}
         camera={cameraRef.current}
       >
         <Physics gravity={[0, -9.82, 0]}>
           <BrowserRouter>
-            <Suspense fallback={null}>
-              <ambientLight args={["white", 0.6]} />
-              <Movement />
-            </Suspense>
+            <ambientLight args={["white", 0.6]} />
+            <Movement />
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <Suspense fallback={null}>
-                    <Welcome />
-                  </Suspense>
-                }
-              />
               <Route
                 path="shop"
                 element={
                   <Suspense fallback={null}>
                     <Shop />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={null}>
+                    <Welcome />
                   </Suspense>
                 }
               />

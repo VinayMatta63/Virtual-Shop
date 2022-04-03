@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Entrance from "./Entrance";
 import IntroText from "./IntroText";
-import useStore from "../../store";
+import useStore, { locations } from "../../store";
 
 const dispatchSelector = (state) => state.dispatch;
 
@@ -10,6 +10,7 @@ const Welcome = () => {
   const dispatch = useStore(dispatchSelector);
 
   useEffect(() => {
+    dispatch({ type: "SETLOC", payload: locations.ENTRANCE });
     dispatch({ type: "SETOBJ", payload: entranceRef.current });
   }, []);
 

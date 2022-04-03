@@ -8,6 +8,7 @@ import Welcome from "./components/welcome";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useStore from "./store";
 import Movement from "./components/common/Movement";
+import Shop from "./components/shop";
 
 const dispatchSelector = (state) => state.dispatch;
 
@@ -23,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div id="cover">
       {window.innerWidth < 768 && (
         <div
           style={{
@@ -38,27 +39,34 @@ function App() {
 
       <Canvas
         frameloop="demand"
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         performance={{ min: 0.5 }}
         style={{ height: "100vh" }}
         camera={cameraRef.current}
       >
         <Physics gravity={[0, -9.82, 0]}>
-          <Suspense fallback={null}>
-            <ambientLight args={["white", 1]} />
-            <Movement />
-          </Suspense>
           <BrowserRouter>
+            <Suspense fallback={null}>
+              <ambientLight args={["white", 0.6]} />
+              <Movement />
+            </Suspense>
             <Routes>
               <Route
                 path="/"
                 element={
                   <Suspense fallback={null}>
-                    <Welcome cameraRef={cameraRef} />
+                    <Welcome />
                   </Suspense>
                 }
               />
-              <Route path="shop" />
+              <Route
+                path="shop"
+                element={
+                  <Suspense fallback={null}>
+                    <Shop />
+                  </Suspense>
+                }
+              />
             </Routes>
           </BrowserRouter>
         </Physics>

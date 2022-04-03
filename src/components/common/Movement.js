@@ -5,16 +5,23 @@ import { Raycaster, Vector3 } from "three";
 import useWASD from "../../hooks/useWASD";
 import Character from "./Character";
 import gsap from "gsap";
-import useStore from "../../store";
+import useStore, { locations } from "../../store";
+import { useNavigate } from "react-router";
 
 const camSelector = (state) => state.camera;
 const objSelector = (state) => state.objects;
+const locSelector = (state) => state.location;
 
 const Movement = () => {
   const { forward, reverse, left, right, sprint } = useWASD();
+  const navigate = useNavigate();
   const cameraRef = useStore(camSelector);
   const objects = useStore(objSelector);
+  const location = useStore(locSelector);
 
+  const delay = (ms) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
   const characterRef = useRef(null);
   const positionRef = useRef([0, 0, 0]);
 
@@ -40,11 +47,11 @@ const Movement = () => {
     return unsubscribe;
   }, []);
 
-  useFrame(() => {
-    /**
-     * Increase Speed while sprinting
-     */
+  useFrame(async () => {
     if (sprint && (forward || reverse || left || right)) {
+      /**
+       * Increase Speed while sprinting
+       */
       SPEED = 20;
     } else {
       SPEED = 10;
@@ -122,15 +129,28 @@ const Movement = () => {
     if (forward && right) {
       characterRef.current.rotation.y += (Math.PI / 4) * 3;
     }
+
+    /**
+     * Change the scene from entrance to shop.
+     */
+    if (
+      location === locations.ENTRANCE &&
+      characterRef.current.position.z < -120
+    ) {
+      navigate("/shop");
+      gsap.to(document.getElementById("cover"), {
+        backgroundColor: "rgba(0,255,255,0.3)",
+      });
+      await delay(500);
+      gsap.to(document.getElementById("cover"), { backgroundColor: "white" });
+    }
   });
   return (
-    <group>
-      <Character
-        ref={characterRef}
-        walk={forward || reverse || left || right}
-        cameraRef={cameraRef}
-      />
-    </group>
+    <Character
+      ref={characterRef}
+      walk={forward || reverse || left || right}
+      cameraRef={cameraRef}
+    />
   );
 };
 

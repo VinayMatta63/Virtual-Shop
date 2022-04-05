@@ -47,11 +47,30 @@ const Movement = () => {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    api.position.set(positionRef.current[0], positionRef.current[1], 0);
+  }, [location]);
+
   useFrame(async () => {
+    /**
+     * Change the scene from entrance to shop.
+     */
+    if (
+      location === locations.ENTRANCE &&
+      characterRef.current.position.z < -120
+    ) {
+      navigate("/shop");
+      gsap.to(document.getElementById("cover"), {
+        backgroundColor: "rgba(0,255,255,0.3)",
+      });
+      await delay(500);
+      gsap.to(document.getElementById("cover"), { backgroundColor: "white" });
+    }
+
+    /**
+     * Increase Speed while sprinting
+     */
     if (sprint && (forward || reverse || left || right)) {
-      /**
-       * Increase Speed while sprinting
-       */
       SPEED = 20;
     } else {
       SPEED = 10;
@@ -128,21 +147,6 @@ const Movement = () => {
     }
     if (forward && right) {
       characterRef.current.rotation.y += (Math.PI / 4) * 3;
-    }
-
-    /**
-     * Change the scene from entrance to shop.
-     */
-    if (
-      location === locations.ENTRANCE &&
-      characterRef.current.position.z < -120
-    ) {
-      navigate("/shop");
-      gsap.to(document.getElementById("cover"), {
-        backgroundColor: "rgba(0,255,255,0.3)",
-      });
-      await delay(500);
-      gsap.to(document.getElementById("cover"), { backgroundColor: "white" });
     }
   });
   return (

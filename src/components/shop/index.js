@@ -8,7 +8,6 @@ const productsSelector = (state) => state.products;
 
 const Shop = () => {
   const robotRef = useRef();
-  const lightHelper = useRef();
   const robot = useGLTF("/robot/scene.gltf");
   const { actions } = useAnimations(robot.animations, robotRef);
   const dispatch = useStore(dispatchSelector);
@@ -16,7 +15,9 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch({ type: "SETLOC", payload: locations.SHOP });
+    dispatch({ type: "SETOBJ", payload: robotRef.current });
   }, []);
+
   useEffect(() => {
     actions["Take 01"].play();
   }, []);
@@ -28,13 +29,9 @@ const Shop = () => {
         <meshBasicMaterial color="cyan" />
       </mesh>
       <ProductPlacement products={products} />
-      <pointLight
-        args={["white", 1.5]}
-        position={[-100, 10, -82]}
-        ref={lightHelper}
-      />
+      <pointLight args={["white", 1.5]} position={[-100, 10, -82]} />
       <mesh scale={0.5} position={[-100, 0.1, -100]}>
-        <primitive object={robot.scene} ref={robotRef} />
+        <primitive object={robot.scene} ref={robotRef} dispose={null} />
       </mesh>
     </group>
   );

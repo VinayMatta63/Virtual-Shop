@@ -1,25 +1,14 @@
 import { useFrame, useLoader } from "@react-three/fiber";
-import React from "react";
+import React, { useRef } from "react";
 import { TextureLoader } from "three";
 import { DoubleSide } from "three";
 import { vertexShader, fragmentShader } from "../../utils/shaders";
 import { Color } from "three";
 import { ShaderMaterial } from "three";
 import { Shape } from "three";
-import Wave from "../common/Wave";
-
-const styles = {
-  color: "#fff",
-  backgroundColor: "rgba(0,0,0,0.8)",
-  fontSize: "30px",
-  padding: "100px 200px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flexDirection: "column",
-};
 
 const Product = ({ product, position }) => {
+  const prodRef = useRef();
   const length = 16,
     width = 2;
 
@@ -60,7 +49,7 @@ const Product = ({ product, position }) => {
   });
 
   return (
-    <group>
+    <group ref={prodRef}>
       <mesh position={position} material={holoMaterial}>
         <planeBufferGeometry args={[14, 16]} />
       </mesh>
@@ -86,7 +75,6 @@ const Product = ({ product, position }) => {
         <extrudeBufferGeometry args={[shape, extrudeSettings]} />
         <meshLambertMaterial opacity={0.85} transparent={true} />
       </mesh>
-      <Wave position={position} scale={1} />
     </group>
   );
 };

@@ -89,9 +89,10 @@ const Movement = () => {
     /**
      * Restrict character movement based on intersections with walls
      */
-    raycaster.ray.origin.copy(characterRef.current.position);
-    raycaster.ray.direction.copy(direction);
-    if (!raycaster.intersectObjects(objects).length > 0) {
+
+    raycaster.set(characterRef.current.position, direction);
+
+    if (!raycaster.intersectObjects(objects, true).length > 0) {
       api.velocity.set(-direction.x, 0, -direction.z);
     }
 

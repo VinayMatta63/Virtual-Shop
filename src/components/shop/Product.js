@@ -6,7 +6,6 @@ import { vertexShader, fragmentShader } from "../../utils/shaders";
 import { Color } from "three";
 import { ShaderMaterial } from "three";
 import { Shape } from "three";
-import Shopkeeper from "../common/Shopkeeper";
 import Wave from "../common/Wave";
 
 const styles = {

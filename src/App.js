@@ -1,5 +1,5 @@
 import { Physics } from "@react-three/cannon";
-import { Loader } from "@react-three/drei";
+import { Loader, OrbitControls, Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef } from "react";
 import { PerspectiveCamera } from "three";
@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useStore from "./store";
 import Movement from "./components/common/Movement";
 import Shop from "./components/shop";
+import axios from "./utils/axios";
 
 const dispatchSelector = (state) => state.dispatch;
 
@@ -21,6 +22,14 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "SETCAM", payload: cameraRef });
+    axios
+      .get("/products")
+      .then((res) => {
+        dispatch({ type: "SETPRODUCTS", payload: res.data });
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   }, []);
 
   return (
@@ -41,13 +50,26 @@ function App() {
         frameloop="demand"
         dpr={[1, 1.5]}
         performance={{ min: 0.5 }}
-        style={{ height: "100vh" }}
+        style={{
+          height: "100vh",
+          background:
+            "radial-gradient(circle farthest-corner at center top,#071021,#19324a)",
+        }}
         camera={cameraRef.current}
       >
         <Physics gravity={[0, -9.82, 0]}>
           <BrowserRouter>
             <ambientLight args={["white", 0.6]} />
             <Movement />
+            {/* <OrbitControls /> */}
+            <Stars
+              radius={160}
+              depth={50}
+              count={5000}
+              factor={4}
+              saturation={0}
+              fade
+            />
             <Routes>
               <Route
                 path="shop"

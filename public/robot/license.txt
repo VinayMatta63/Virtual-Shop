@@ -1,0 +1,11 @@
+Model Information:
+* title:	Robert the Robot
+* source:	https://sketchfab.com/3d-models/robert-the-robot-bb4f731ba31d43ea814ed5db871e1c23
+* author:	SlyDog123123 (https://sketchfab.com/SlyDog123123)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Robert the Robot" (https://sketchfab.com/3d-models/robert-the-robot-bb4f731ba31d43ea814ed5db871e1c23) by SlyDog123123 (https://sketchfab.com/SlyDog123123) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

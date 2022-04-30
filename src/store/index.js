@@ -1,4 +1,5 @@
 import create from "zustand";
+
 const types = {
   setcam: "SETCAM",
   resetcam: "RESETCAM",
@@ -6,6 +7,7 @@ const types = {
   resetobj: "RESETOBJ",
   setloc: "SETLOC",
   resetloc: "RESETLOC",
+  setProducts: "SETPRODUCTS",
 };
 
 export const locations = {
@@ -27,6 +29,8 @@ const reducer = (state, { type, payload }) => {
       return { location: payload };
     case types.resetloc:
       return { location: locations.ENTRANCE };
+    case types.setProducts:
+      return { products: payload };
     default:
       break;
   }
@@ -35,6 +39,7 @@ const reducer = (state, { type, payload }) => {
 const useStore = create((set) => ({
   camera: null,
   objects: [],
+  products: [],
   location: locations.ENTRANCE,
   dispatch: (args) => set((state) => reducer(state, args)),
 }));

@@ -6,6 +6,7 @@ import { vertexShader, fragmentShader } from "../../utils/shaders";
 import { Color } from "three";
 import { ShaderMaterial } from "three";
 import { Shape } from "three";
+import Shopkeeper from "../common/Shopkeeper";
 
 const styles = {
   color: "#fff",
@@ -85,7 +86,7 @@ const Product = ({ product, position }) => {
         <extrudeBufferGeometry args={[shape, extrudeSettings]} />
         <meshLambertMaterial opacity={0.85} transparent={true} />
       </mesh>
-      {/* <Robot /> */}
+      <Shopkeeper position={position} scale={0.1} />
     </group>
   );
 };

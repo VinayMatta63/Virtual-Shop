@@ -1,4 +1,4 @@
-import { Html, useAnimations, useGLTF } from "@react-three/drei";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import useStore, { locations } from "../../store";
 import ProductPlacement from "./ProductPlacement";
@@ -24,7 +24,7 @@ const Shop = () => {
   return (
     <group>
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <planeBufferGeometry args={[400, 400]} />
+        <planeBufferGeometry args={[250, 250]} />
         <meshBasicMaterial color="cyan" />
       </mesh>
       <ProductPlacement products={products} />

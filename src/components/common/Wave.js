@@ -11,7 +11,6 @@ export default function Wave({ ...props }) {
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    console.log(nodes);
     actions["Animation"].play();
   }, []);
 

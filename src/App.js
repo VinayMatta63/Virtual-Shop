@@ -62,19 +62,20 @@ function App() {
             <ambientLight args={["white", 0.6]} />
             <Movement />
             {/* <OrbitControls /> */}
-            <Stars
-              radius={160}
-              depth={50}
-              count={5000}
-              factor={4}
-              saturation={0}
-              fade
-            />
+
             <Routes>
               <Route
                 path="shop"
                 element={
                   <Suspense fallback={null}>
+                    <Stars
+                      radius={160}
+                      depth={50}
+                      count={5000}
+                      factor={4}
+                      saturation={0}
+                      fade
+                    />
                     <Shop />
                   </Suspense>
                 }

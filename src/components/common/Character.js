@@ -13,6 +13,7 @@ const Character = forwardRef(({ walk, cameraRef }, characterRef) => {
     "/character.gltf"
   );
   const { actions } = useAnimations(animations, characterRef);
+
   useEffect(() => {
     if (walk) actions.walk.play();
     else actions.walk.stop();

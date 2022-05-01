@@ -68,14 +68,14 @@ function App() {
                 path="shop"
                 element={
                   <Suspense fallback={null}>
-                    {/* <Stars
+                    <Stars
                       radius={120}
                       depth={50}
                       count={5000}
                       factor={4}
                       saturation={0}
                       fade
-                    /> */}
+                    />
                     <Shop />
                   </Suspense>
                 }

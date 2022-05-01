@@ -1,0 +1,262 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v1.7.33",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "modern_coffee_table_02"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "modern_coffee_table_02_base",
+      "normalTexture": {
+        "index": 0
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "metallicRoughnessTexture": {
+          "index": 2
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "modern_coffee_table_02_wood",
+      "normalTexture": {
+        "index": 3
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0,
+        "metallicRoughnessTexture": {
+          "index": 5
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "BezierCircle.002",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        },
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 1
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/jpeg",
+      "name": "modern_coffee_table_02_base_nor_gl.png",
+      "uri": "textures/modern_coffee_table_02_base_nor_gl_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "modern_coffee_table_02_base_diff",
+      "uri": "textures/modern_coffee_table_02_base_diff_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "modern_coffee_table_02_base_rough",
+      "uri": "textures/modern_coffee_table_02_base_rough_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "modern_coffee_table_02_wood_nor_gl",
+      "uri": "textures/modern_coffee_table_02_wood_nor_gl_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "modern_coffee_table_02_wood_diff",
+      "uri": "textures/modern_coffee_table_02_wood_diff_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "modern_coffee_table_02_wood_rough",
+      "uri": "textures/modern_coffee_table_02_wood_rough_4k.jpg"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 7210,
+      "max": [
+        0.6005420684814453,
+        0.3674314022064209,
+        0.6017131805419922
+      ],
+      "min": [
+        -0.597504734992981,
+        -0.00019758939743041992,
+        -0.5973209142684937
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 7210,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 7210,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 14058,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 17825,
+      "max": [
+        0.4494684934616089,
+        0.36905208230018616,
+        0.6023358702659607
+      ],
+      "min": [
+        -0.5985692739486694,
+        0.0669964849948883,
+        -0.4451645016670227
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 17825,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 17825,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5123,
+      "count": 26877,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 86520,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteLength": 86520,
+      "byteOffset": 86520
+    },
+    {
+      "buffer": 0,
+      "byteLength": 57680,
+      "byteOffset": 173040
+    },
+    {
+      "buffer": 0,
+      "byteLength": 28116,
+      "byteOffset": 230720
+    },
+    {
+      "buffer": 0,
+      "byteLength": 213900,
+      "byteOffset": 258836
+    },
+    {
+      "buffer": 0,
+      "byteLength": 213900,
+      "byteOffset": 472736
+    },
+    {
+      "buffer": 0,
+      "byteLength": 142600,
+      "byteOffset": 686636
+    },
+    {
+      "buffer": 0,
+      "byteLength": 53754,
+      "byteOffset": 829236
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 882992,
+      "uri": "modern_coffee_table_02.bin"
+    }
+  ]
+}

@@ -91,7 +91,6 @@ const Movement = () => {
      */
 
     raycaster.set(characterRef.current.position, direction);
-
     if (!raycaster.intersectObjects(objects, true).length > 0) {
       api.velocity.set(-direction.x, 0, -direction.z);
     }

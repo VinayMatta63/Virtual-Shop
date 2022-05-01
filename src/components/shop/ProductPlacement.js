@@ -5,10 +5,10 @@ import Product from "./Product";
 import "./bubble.css";
 
 const locations = [
-  [100, 10.1, 100],
-  [100, 10.1, -100],
-  [0, 10.1, -100],
-  [0, 10.1, 100],
+  [70, 10.1, 70],
+  [70, 10.1, -70],
+  [0, 10.1, -70],
+  [0, 10.1, 70],
 ];
 
 const ProductPlacement = ({ products }) => {

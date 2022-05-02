@@ -37,14 +37,17 @@ const Shop = () => {
     <group>
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
         <planeBufferGeometry args={[200, 200]} ref={geomRef} />
-        <meshBasicMaterial color="white" />
+        <meshPhongMaterial color="#50d4c7" />
       </mesh>
       <ProductPlacement products={products} />
       <pointLight args={["white", 1.5]} position={[-70, 10, -42]} />
-      <mesh scale={0.5} position={[-70, 0.2, -70]}>
+      <mesh
+        scale={0.5}
+        position={[-70, 0.2, -70]}
+        rotation={[0, Math.PI / 6, 0]}
+      >
         <primitive object={robot.scene} ref={robotRef} dispose={null} />
       </mesh>
-      {/* <Room scale={0.5} position={[-100, 0.1, 0]} /> */}
     </group>
   );
 };

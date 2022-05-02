@@ -6,8 +6,11 @@ import { vertexShader, fragmentShader } from "../../utils/shaders";
 import { Color } from "three";
 import { ShaderMaterial } from "three";
 import { Shape } from "three";
+import { Html } from "@react-three/drei";
+import "./bubble.css";
+import "./info.css";
 
-const Product = ({ product, position }) => {
+const Product = ({ product, setProduct }) => {
   const prodRef = useRef();
   const length = 16,
     width = 2;
@@ -49,11 +52,17 @@ const Product = ({ product, position }) => {
   });
 
   return (
-    <group ref={prodRef}>
-      <mesh position={position} material={holoMaterial}>
+    <group ref={prodRef} rotation={[0, Math.PI / 2, 0]}>
+      <mesh position={product.position} material={holoMaterial}>
         <planeBufferGeometry args={[14, 16]} />
       </mesh>
-      <mesh position={[position[0], position[1], position[2] + 0.1]}>
+      <mesh
+        position={[
+          product.position[0],
+          product.position[1],
+          product.position[2] + 0.1,
+        ]}
+      >
         <planeBufferGeometry args={[12, 14]} />
         <meshPhongMaterial
           map={texture}
@@ -62,7 +71,13 @@ const Product = ({ product, position }) => {
           transparent={true}
         />
       </mesh>
-      <mesh position={[position[0], position[1], position[2] - 0.1]}>
+      <mesh
+        position={[
+          product.position[0],
+          product.position[1],
+          product.position[2] - 0.1,
+        ]}
+      >
         <planeBufferGeometry args={[12, 14]} />
         <meshPhongMaterial
           map={texture}
@@ -71,10 +86,28 @@ const Product = ({ product, position }) => {
           transparent={true}
         />
       </mesh>
-      <mesh position={[position[0] - 8, position[1] - 10, position[2] - 0.5]}>
+      <mesh
+        position={[
+          product.position[0] - 8,
+          product.position[1] - 10,
+          product.position[2] - 0.5,
+        ]}
+      >
         <extrudeBufferGeometry args={[shape, extrudeSettings]} />
         <meshLambertMaterial opacity={0.85} transparent={true} />
       </mesh>
+      <Html
+        position={[
+          product.position[0] + 12,
+          product.position[1],
+          product.position[2] - 0.5,
+        ]}
+        transform
+      >
+        <div className="info">
+          <button onClick={() => setProduct(product)}>Know More</button>
+        </div>
+      </Html>
     </group>
   );
 };

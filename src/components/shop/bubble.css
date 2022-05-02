@@ -4,16 +4,17 @@
   padding: 20px;
   border-radius: 30px;
   min-width: 40px;
-  max-width: 220px;
+  max-width: 300px;
   min-height: 40px;
   margin: 20px;
   position: relative;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: justify;
   flex-direction: column;
   font-size: 30px;
 }
+
 .thought:before,
 .thought:after {
   content: "";

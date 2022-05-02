@@ -121,7 +121,7 @@ const Movement = () => {
         duration: 0.2,
       });
     } else {
-      gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.2 });
+      // gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.2 });
     }
 
     /**

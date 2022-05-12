@@ -26,7 +26,7 @@ const Movement = () => {
   const positionRef = useRef([0, 0, 0]);
 
   const raycaster = new Raycaster(new Vector3(), new Vector3(), 0, 20);
-  let SPEED = 10;
+  let SPEED = 9.5;
   const frontVector = new Vector3(0, 0, 0);
   const sideVector = new Vector3(0, 0, 0);
   const direction = new Vector3(0, 0, 0);
@@ -70,11 +70,11 @@ const Movement = () => {
     /**
      * Increase Speed while sprinting
      */
-    if (sprint && (forward || reverse || left || right)) {
-      SPEED = 20;
-    } else {
-      SPEED = 10;
-    }
+    // if (sprint && (forward || reverse || left || right)) {
+    //   SPEED = 19.5;
+    // } else {
+    //   SPEED = 9.5;
+    // }
 
     /**
      * Deciding which direction to move the character
@@ -110,18 +110,18 @@ const Movement = () => {
       cameraRef.current.position.x = positionRef.current[0] - 13;
       cameraRef.current.position.z = positionRef.current[2];
       gsap.to(cameraRef.current.rotation, {
-        y: (3 * Math.PI) / 2,
+        y: -Math.PI / 2,
         duration: 0.2,
       });
     } else if (left) {
       cameraRef.current.position.x = positionRef.current[0] + 13;
       cameraRef.current.position.z = positionRef.current[2];
       gsap.to(cameraRef.current.rotation, {
-        y: (-3 * Math.PI) / 2,
+        y: Math.PI / 2,
         duration: 0.2,
       });
     } else {
-      // gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.2 });
+      gsap.to(cameraRef.current.rotation, { y: 0, duration: 0.2 });
     }
 
     /**

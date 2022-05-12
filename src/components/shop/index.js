@@ -40,12 +40,8 @@ const Shop = () => {
         <meshPhongMaterial color="#50d4c7" />
       </mesh>
       <ProductPlacement products={products} />
-      <pointLight args={["white", 1.5]} position={[-70, 10, -42]} />
-      <mesh
-        scale={0.5}
-        position={[-70, 0.2, -70]}
-        rotation={[0, Math.PI / 6, 0]}
-      >
+      <pointLight args={["white", 1.5]} position={[-0, 20, 30]} />
+      <mesh scale={0.5} position={[0, 0.6, -50]} rotation={[0, Math.PI / 6, 0]}>
         <primitive object={robot.scene} ref={robotRef} dispose={null} />
       </mesh>
     </group>

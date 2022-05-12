@@ -15,6 +15,7 @@ const Character = forwardRef(({ walk, cameraRef }, characterRef) => {
   const { actions } = useAnimations(animations, characterRef);
 
   useEffect(() => {
+    console.log(cameraRef.current.rotation);
     if (walk) actions.walk.play();
     else actions.walk.stop();
   });
@@ -22,7 +23,11 @@ const Character = forwardRef(({ walk, cameraRef }, characterRef) => {
     <group
       ref={characterRef}
       dispose={null}
-      rotation={cameraRef.current.rotation}
+      rotation={[
+        cameraRef.current.rotation.x,
+        cameraRef.current.rotation.y,
+        cameraRef.current.rotation.z,
+      ]}
     >
       <group>
         <group position={[4.08, 5.9, -1.01]} rotation={[1.89, 0.88, -2.05]} />

@@ -52,7 +52,7 @@ const Product = ({ product, setProduct }) => {
   });
 
   return (
-    <group ref={prodRef} rotation={[0, Math.PI / 2, 0]}>
+    <group ref={prodRef} rotation={[0, 0, 0]}>
       <mesh position={product.position} material={holoMaterial}>
         <planeBufferGeometry args={[14, 16]} />
       </mesh>
@@ -98,7 +98,7 @@ const Product = ({ product, setProduct }) => {
       </mesh>
       <Html
         position={[
-          product.position[0] + 12,
+          product.position[0] + 10,
           product.position[1],
           product.position[2] - 0.5,
         ]}
